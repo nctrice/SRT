@@ -21,11 +21,12 @@ input,select{padding:10px;border:1px solid #d1d5da;border-radius:8px;font-size:1
 footer{padding:16px;text-align:center;color:#6a737d}
 @media (max-width:700px){.grid-2{grid-template-columns:1fr}.grid-2 .span-2{grid-column:auto}}
 
-/* Hide all tab panels by default */
-.tab-content {
-  display: none;
-}
+/* Tabs */
+.tab-content{display:none}
+.tab-content.active{display:block}
 
-/* Show only the active tab panel */
-.tab-content.active {
-  display: block;
+/* A11y hidden heading */
+.visually-hidden{position:absolute !important; clip:rect(1px,1px,1px,1px); padding:0 !important; border:0 !important; height:1px !important; width:1px !important; overflow:hidden}
+
+/* Payment mode toggle */
+.hidden{display:none}
