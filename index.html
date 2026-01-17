@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SalesTrackerNEW (PWA)</title>
-  <link rel="manifest" href="manifest.webmanifest">
+  manifest.webmanifest
   <meta name="theme-color" content="#0b7df2" />
-  <link rel="icon" href="assets/icon-192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="assets/icon-192.png">
-  <link rel="stylesheet" href="styles.css" />
+  assets/icon-192.png
+  assets/icon-192.png
+  styles.css
 </head>
 <body>
   <header>
@@ -24,36 +25,80 @@
     <!-- Payments Tab -->
     <section id="payments" class="tab-content active">
       <div class="card">
-        <h2>Add Payment</h2>
-        <form id="payment-form">
+        <div class="card-head">
+          <h2>Manage Ledgers</h2>
+          <div class="inline">
+            <input type="text" id="ledger-input" placeholder="New ledger name">
+            <button id="ledger-add" class="secondary">Add Ledger</button>
+          </div>
+        </div>
+        <div id="ledger-list" class="chips"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Post a Payment</h2>
+          <div class="inline">
+            <label style="flex-direction:row;align-items:center;gap:6px">
+              <input type="radio" name="pay-mode" id="mode-credit" checked> Credit payment
+            </label>
+            <label style="flex-direction:row;align-items:center;gap:6px">
+              <input type="radio" name="pay-mode" id="mode-debit"> Debit invoice
+            </label>
+          </div>
+        </div>
+        <h3 class="muted">Select a mode above to reveal the form.</h3>
+
+        <h2 class="visually-hidden">Add Payment (Credit)</h2>
+        <form id="payment-form" class="hidden">
           <div class="grid-2">
             <label>Date <input type="date" id="p-date" required></label>
-            <label>Payment name <input type="text" id="p-name" required placeholder="e.g., Deposit"></label>
-            <label>Type
+            <label>Payment name <input type="text" id="p-name" required placeholder="e.g., Company deposit"></label>
+            <label>Payment type
               <select id="p-type" required>
                 <option value="Transfer">Transfer</option>
                 <option value="Cheque">Cheque</option>
               </select>
             </label>
             <label>Amount (₦) <input type="number" id="p-amount" required step="0.01" min="0"></label>
+            <label>Ledger
+              <select id="p-ledger" required></select>
+            </label>
           </div>
           <button type="submit" class="primary">Save Payment</button>
+        </form>
+
+        <h2 class="visually-hidden">Add Debit</h2>
+        <form id="debit-form" class="hidden">
+          <div class="grid-2">
+            <label>Date <input type="date" id="d-date" required></label>
+            <label>Invoice type <input type="text" id="d-invtype" required placeholder="e.g., Expense, Charge"></label>
+            <label>Invoice number <input type="text" id="d-invnum" required></label>
+            <label>Amount (₦) <input type="number" id="d-amount" required step="0.01" min="0"></label>
+            <label>Ledger
+              <select id="d-ledger" required></select>
+            </label>
+          </div>
+          <button type="submit" class="primary">Save Debit</button>
         </form>
       </div>
 
       <div class="card">
         <div class="card-head">
-          <h2>Payments</h2>
+          <h2>Payments (All)</h2>
           <div>
-            <button id="export-payments" class="secondary">Export CSV</button>
+            <button id="export-payments" class="secondary">Export All Payments</button>
           </div>
         </div>
+        <p class="muted">Arranged from <strong>earliest to latest</strong>.</p>
         <table class="data-table" id="payments-table">
-          <thead><tr><th>Date</th><th>Name</th><th>Type</th><th class="right">Amount</th><th></th></tr></thead>
+          <thead><tr><th>Date</th><th>Name</th><th>Type</th><th>Ledger</th><th class="right">Amount</th><th></th></tr></thead>
           <tbody></tbody>
-          <tfoot><tr><td colspan="3" class="right">Total</td><td class="right" id="payments-total">₦0</td><td></td></tr></tfoot>
+          <tfoot><tr><td colspan="4" class="right">Total Credits</td><td class="right" id="payments-total">₦0</td><td></td></tr></tfoot>
         </table>
       </div>
+
+      <div id="ledger-boards"></div>
     </section>
 
     <!-- Receivables Tab -->
@@ -147,6 +192,6 @@
     <small>SalesTrackerNEW PWA • LocalStorage • NGN</small>
   </footer>
 
-  <script src="app.js"></script>
+  app.js</script>
 </body>
 </html>
