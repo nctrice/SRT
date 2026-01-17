@@ -1,4 +1,6 @@
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:#f6f8fb;color:#1b1f23}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:#f6f8fb;color:#1b1f23}
 header{background:#0b7df2;color:white;padding:14px 16px;position:sticky;top:0;z-index:10}
 header h1{margin:0;font-size:20px}
 .tabs{margin-top:10px}
@@ -6,7 +8,7 @@ header h1{margin:0;font-size:20px}
 .tab-btn.active{background:#fff;color:#0b7df2;border-bottom:2px solid #0b7df2}
 main{padding:16px;max-width:1000px;margin:0 auto}
 .card{background:#fff;border:1px solid #e1e4e8;border-radius:10px;padding:16px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px;flex-wrap:wrap}
 .primary{background:#0b7df2;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
 .secondary{background:#fff;color:#0b7df2;border:1px solid #0b7df2;padding:8px 12px;border-radius:8px;cursor:pointer}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -27,8 +29,17 @@ footer{padding:16px;text-align:center;color:#6a737d}
 .chip{font-size:13px;margin-right:6px}
 .chip-x{background:transparent;border:none;color:#d73a49;font-weight:bold;cursor:pointer}
 
-/* Tabs visibility fix */
+/* Tabs visibility */
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-@media (max-width:700px){.grid-2{grid-template-columns:1fr}.grid-2 .span-2{grid-column:auto}}
+/* Hide headings used only for a11y */
+.visually-hidden{position:absolute !important; clip:rect(1px,1px,1px,1px); padding:0 !important; border:0 !important; height:1px !important; width:1px !important; overflow:hidden}
+
+/* Payment mode toggle */
+.hidden{display:none}
+
+@media (max-width:700px){
+  .grid-2{grid-template-columns:1fr}
+  .grid-2 .span-2{grid-column:auto}
+}
